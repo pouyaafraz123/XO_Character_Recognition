@@ -1,0 +1,16 @@
+.root{
+    -fx-background-color:  rgb(14, 22, 33);
+}
+
+.btn{
+    -fx-background-color: #0073da;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 250px;
+}
+
+.lay{
+    -fx-border-color: #0073da;
+    -fx-border-radius: 25px;
+    -fx-border-width: 2px;
+}
+
