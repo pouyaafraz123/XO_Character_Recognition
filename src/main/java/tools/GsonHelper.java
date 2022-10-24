@@ -18,7 +18,7 @@ public class GsonHelper {
         builder.setPrettyPrinting();
         gson = builder.create();
 
-        file = new File("data.txt");
+        file = new File("data1.txt");
     }
 
     public void fileOpen() {

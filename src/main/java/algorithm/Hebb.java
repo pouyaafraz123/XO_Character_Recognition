@@ -1,5 +1,6 @@
 package algorithm;
 
+import main.Main;
 import model.Data;
 
 import java.util.Arrays;
@@ -14,9 +15,9 @@ public class Hebb {
         this.dataset = dataset;
     }
 
-    public void train(){
-        Arrays.fill(weights,0);
-        bias=0;
+    public void train() {
+        Arrays.fill(weights, 0);
+        bias = 0;
 
         for (Data data : dataset) {
             int label = Objects.equals(data.getLabel(), "X") ? 1 : -1;
@@ -27,16 +28,26 @@ public class Hebb {
             }
             bias = bias + label;
         }
+
+        Main.log("The Dataset Trained Successfully.");
+        Main.log("The Trained Weights Are: \n" + Arrays.toString(weights));
+        Main.log("The Trained Bias Are: " + bias);
     }
 
-    public boolean predict(int[] points){
+    public boolean predict(int[] points) {
+        Main.log("Start Prediction...");
+        Main.log("Data Matrix Is: ");
+        Main.logMatrix(points);
+
         double sum = 0;
 
-        for (int i=0;i<weights.length;i++){
-            sum+=points[i]*weights[i];
+        for (int i = 0; i < weights.length; i++) {
+            sum += points[i] * weights[i];
         }
-        sum+=bias;
+        sum += bias;
 
-        return sum>=0;
+        Main.log("Prediction Rate Is: " + sum);
+
+        return sum >= 0;
     }
 }

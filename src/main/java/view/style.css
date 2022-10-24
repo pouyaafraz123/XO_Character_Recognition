@@ -14,3 +14,7 @@
     -fx-border-width: 2px;
 }
 
+.sep{
+    -fx-background-color: linear-gradient(to right,transparent,#fff,transparent);
+}
+

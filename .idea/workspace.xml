@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/style.css" afterDir="false" />
+    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +49,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/IntellijProjects/Hebb_HM",
+    "last_opened_file_path": "C:/Users/Legion/AppData/Local/SceneBuilder/SceneBuilder.exe",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "random.image.background"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -68,8 +64,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Hebb_HM" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,7 +73,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.main.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -89,8 +85,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666551959764</updated>
-      <workItem from="1666551961459" duration="15424000" />
+      <workItem from="1666551961459" duration="15779000" />
+      <workItem from="1666613699553" duration="403000" />
+      <workItem from="1666615305268" duration="220000" />
+      <workItem from="1666628233291" duration="184000" />
+      <workItem from="1666636294413" duration="7273000" />
     </task>
+    <task id="LOCAL-00001" summary="v1">
+      <created>1666568599249</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666568599249</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +117,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

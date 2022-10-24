@@ -2,16 +2,20 @@ package controller;
 
 import algorithm.Hebb;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import main.Main;
 import model.Data;
 import tools.GsonHelper;
 
@@ -39,16 +43,19 @@ public class MainController implements Initializable {
                     "-fx-background-color: rgba(5,140,213,0.79)";
 
     @FXML
-    private JFXButton add;
-
-    @FXML
-    private JFXButton predict;
+    private Text text;
 
     @FXML
     private AnchorPane board;
 
     @FXML
-    private Text text;
+    private JFXButton add;
+
+    @FXML
+    private JFXButton train;
+
+    @FXML
+    private JFXButton predict;
 
     @FXML
     private JFXButton random;
@@ -62,24 +69,27 @@ public class MainController implements Initializable {
     @FXML
     private JFXButton o;
 
+    @FXML
+    private JFXTextArea area;
+
+    private Hebb hebb;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        area.textProperty().addListener((ChangeListener<Object>) (observable, oldValue, newValue) -> area.setScrollTop(Double.MAX_VALUE));
         AtomicBoolean addMode = new AtomicBoolean(false);
-
         GsonHelper helper = new GsonHelper();
-        Hebb hebb = new Hebb(helper.readData().toArray(new Data[0]));
-        hebb.train();
-
         int[] matrix = new int[25];
+        GridPane pane = new GridPane();
+        StackPane centerPane = new StackPane(pane);
+
         Arrays.fill(matrix, -1);
 
-        GridPane pane = new GridPane();
         pane.setAlignment(Pos.CENTER);
         pane.setHgap(15);
         pane.setVgap(15);
 
-        StackPane centerPane = new StackPane(pane);
         AnchorPane.setBottomAnchor(centerPane, 0.0);
         AnchorPane.setLeftAnchor(centerPane, 0.0);
         AnchorPane.setRightAnchor(centerPane, 0.0);
@@ -89,28 +99,51 @@ public class MainController implements Initializable {
 
         board.getChildren().add(centerPane);
 
+        train.setOnAction(event -> {
+            Main.log("Start Reading Data...");
+            Data[] trainSet = helper.readData().toArray(new Data[0]);
+            Main.log("Reading Data Finished.");
+            Main.log("Start Training For " + trainSet.length + " Data.");
+            hebb = new Hebb(trainSet);
+            long startTime = System.currentTimeMillis();
+            hebb.train();
+
+            Main.log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
+            Main.logSep();
+            predict.setDisable(false);
+
+            text.setText("Select An Option:");
+        });
+
         predict.setOnAction(event -> {
             boolean result = hebb.predict(matrix);
-            if (result){
+            if (result) {
                 text.setText("The Predict Character Is: X");
-            }else{
+                Main.log("X Predicted.");
+            } else {
                 text.setText("The Predict Character Is: O");
+                Main.log("O Predicted.");
             }
+            Main.logSep();
         });
+
         random.setOnAction(event -> generateRandomData(matrix, pane, centerPane));
         clear.setOnAction(event -> clear(matrix, pane, centerPane));
 
         add.setOnAction(event -> {
+            text.setText("Please Specify Label:");
             if (!addMode.get()) {
                 addMode.set(true);
                 add.setStyle("-fx-background-color: #32002f");
                 x.setDisable(false);
                 o.setDisable(false);
+                Main.log("Add Mode Enabled.");
             } else {
                 add.setStyle("-fx-background-color: #0073da");
                 addMode.set(false);
                 x.setDisable(true);
                 o.setDisable(true);
+                Main.log("Add Mode Disabled.");
             }
         });
 
@@ -118,6 +151,11 @@ public class MainController implements Initializable {
             if (addMode.get()) {
                 Data data = new Data("X", matrix);
                 helper.writeData(data);
+                Main.log("Data");
+                Main.logMatrix(matrix);
+                Main.log("Added To Train Set As: X");
+                Main.logSep();
+                text.setText("Select An Option:");
 
                 add.setStyle("-fx-background-color: #0073da");
                 addMode.set(false);
@@ -132,6 +170,12 @@ public class MainController implements Initializable {
                 Data data = new Data("O", matrix);
                 helper.writeData(data);
 
+                Main.log("Data");
+                Main.logMatrix(matrix);
+                Main.log("Added To Train Set As: O");
+                Main.logSep();
+                text.setText("Select An Option:");
+
                 add.setStyle("-fx-background-color: #0073da");
                 addMode.set(false);
                 x.setDisable(true);
@@ -145,7 +189,9 @@ public class MainController implements Initializable {
     private void clear(int[] matrix, GridPane pane, StackPane centerPane) {
         Arrays.fill(matrix, -1);
         drawButtons(matrix, pane, centerPane);
-        text.setText("The Predict Character Is: UNKNOWN");
+        text.setText("Select An Option:");
+        Main.log("Board Cleared.");
+        Main.logSep();
     }
 
     private void drawButtons(int[] matrix, GridPane pane, StackPane centerPane) {
@@ -153,6 +199,7 @@ public class MainController implements Initializable {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 JFXButton button = new JFXButton(i + "-" + j);
+                button.setFocusTraversable(false);
                 button.setRipplerFill(Color.rgb(23, 150, 200));
                 button.setCursor(Cursor.HAND);
                 int buttonIndex = j * SIZE + i;
@@ -181,11 +228,19 @@ public class MainController implements Initializable {
     }
 
     private void generateRandomData(int[] matrix, GridPane pane, StackPane centerPane) {
+        Main.log("Start Generating Random Data:");
         SecureRandom random = new SecureRandom();
 
         for (int i = 0; i < matrix.length; i++) {
             matrix[i] = random.nextInt() % 2 == 0 ? 1 : -1;
         }
+        Main.log("The Data Is Created:");
+        Main.logMatrix(matrix);
+        Main.logSep();
         drawButtons(matrix, pane, centerPane);
+    }
+
+    public TextArea getArea() {
+        return area;
     }
 }

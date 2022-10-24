@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,128 +12,165 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <HBox alignment="CENTER" layoutX="350.0" layoutY="88.0" prefHeight="60.0" prefWidth="200.0" spacing="30.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+      <HBox alignment="CENTER" layoutX="366.0" layoutY="25.0" prefHeight="60.0" prefWidth="200.0" styleClass="lay" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
          <children>
-            <JFXButton fx:id="add" buttonType="RAISED" prefHeight="60.0" prefWidth="2000.0" styleClass="btn" text="Add Sample To Train Dataset">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="predict" buttonType="RAISED" prefHeight="60.0" prefWidth="2000.0" styleClass="btn" text="Predict The Character">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-         </children>
-      </HBox>
-      <AnchorPane fx:id="board" layoutX="466.0" layoutY="506.0" prefHeight="200.0" prefWidth="265.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="115.0" />
-      <HBox alignment="CENTER" layoutX="468.0" layoutY="606.0" prefHeight="60.0" prefWidth="200.0" styleClass="lay" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-         <children>
-            <Text fx:id="text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="The Predict Character Is: UNKNOWN">
+            <Text fx:id="text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Train The Dataset:">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Text>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="917.0" layoutY="224.0" prefHeight="200.0" prefWidth="250.0" spacing="25.0" AnchorPane.bottomAnchor="120.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="115.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="115.0">
          <children>
-            <JFXButton fx:id="random" buttonType="RAISED" prefHeight="40.0" prefWidth="1000.0" styleClass="btn" text="Generate Random">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Italic" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="clear" buttonType="RAISED" layoutX="35.0" layoutY="273.0" prefHeight="40.0" prefWidth="1000.0" styleClass="btn" text="Clear">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Italic" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="40.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" disable="true" layoutX="35.0" layoutY="233.0" prefHeight="40.0" prefWidth="1000.0" styleClass="btn" text="X" fx:id="x">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Italic" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="o" buttonType="RAISED" disable="true" layoutX="35.0" layoutY="253.0" prefHeight="40.0" prefWidth="1000.0" styleClass="btn" text="O">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Italic" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="200.0" spacing="15.0" HBox.hgrow="SOMETIMES">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane prefHeight="2.0" prefWidth="200.0" styleClass="sep" />
+                  <JFXTextArea fx:id="area" focusColor="#405aa800" style="-fx-text-fill: white;" unFocusColor="#ffffff00" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </JFXTextArea>
+               </children>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </VBox>
+            <AnchorPane fx:id="board" prefHeight="200.0" prefWidth="1000.0" HBox.hgrow="ALWAYS" />
+            <VBox alignment="TOP_CENTER" minWidth="400.0" prefHeight="200.0" prefWidth="400.0" spacing="25.0" HBox.hgrow="SOMETIMES">
+               <children>
+                  <JFXButton fx:id="add" buttonType="RAISED" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Add Sample To Train Dataset">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="train" buttonType="RAISED" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Train">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="predict" buttonType="RAISED" disable="true" layoutX="35.0" layoutY="95.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Predict The Character">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="random" buttonType="RAISED" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Generate Random">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="clear" buttonType="RAISED" layoutX="35.0" layoutY="273.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Clear">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="40.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" disable="true" layoutX="35.0" layoutY="233.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="X" fx:id="x">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="o" buttonType="RAISED" disable="true" layoutX="35.0" layoutY="253.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="O">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="25.0" right="25.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets left="25.0" right="25.0" />
-         </padding>
-      </VBox>
+      </HBox>
      
    </children>
 </AnchorPane>
