@@ -1,8 +1,11 @@
 package controller;
 
 import algorithm.Hebb;
+import algorithm.MultiClassPerceptron;
+import algorithm.Perceptron;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -15,13 +18,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import main.Main;
+import model.Algorithm;
 import model.Data;
 import tools.GsonHelper;
 
 import java.net.URL;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -71,15 +77,24 @@ public class MainController implements Initializable {
 
     @FXML
     private JFXTextArea area;
+    @FXML
+    private JFXButton change;
 
     private Hebb hebb;
+    private Perceptron perceptron;
+    private MultiClassPerceptron multiClassPerceptron;
+    private GsonHelper helper;
+    private Algorithm algorithm;
+    private Map<String, Double> data;
+    private Stage primaryStage;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        area.textProperty().addListener((ChangeListener<Object>) (observable, oldValue, newValue) -> area.setScrollTop(Double.MAX_VALUE));
+        area
+                .textProperty()
+                .addListener((ChangeListener<Object>) (observable, oldValue, newValue) -> area.setScrollTop(Double.MAX_VALUE));
         AtomicBoolean addMode = new AtomicBoolean(false);
-        GsonHelper helper = new GsonHelper();
         int[] matrix = new int[25];
         GridPane pane = new GridPane();
         StackPane centerPane = new StackPane(pane);
@@ -100,31 +115,57 @@ public class MainController implements Initializable {
         board.getChildren().add(centerPane);
 
         train.setOnAction(event -> {
-            Main.log("Start Reading Data...");
+            this.helper.previewBuilder();
+            AlgorithmController.log("Start Reading Data...");
             Data[] trainSet = helper.readData().toArray(new Data[0]);
-            Main.log("Reading Data Finished.");
-            Main.log("Start Training For " + trainSet.length + " Data.");
-            hebb = new Hebb(trainSet);
-            long startTime = System.currentTimeMillis();
-            hebb.train();
+            AlgorithmController.log("Reading Data Finished.");
+            AlgorithmController.log("Start Training For " + trainSet.length + " Data.");
 
-            Main.log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
-            Main.logSep();
-            predict.setDisable(false);
+            Thread thread = new Thread(() -> {
+                long startTime = System.currentTimeMillis();
+                if (algorithm.equals(Algorithm.HEBB)) {
+                    hebb = new Hebb(trainSet);
+                    hebb.train();
+                } else if (algorithm.equals(Algorithm.PERCEPTRON)) {
+                    perceptron = new Perceptron(trainSet, data.get("theta"), data.get("rate"));
+                    perceptron.train((int) data.get("count").doubleValue());
+                } else if (algorithm.equals(Algorithm.MULTICLASSPERCEPTRON)) {
+                    multiClassPerceptron = new MultiClassPerceptron(trainSet, data.get("theta"), data.get("rate"));
+                    multiClassPerceptron.train((int) data.get("count").doubleValue());
+                }
 
-            text.setText("Select An Option:");
+                AlgorithmController.log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
+                AlgorithmController.logSep();
+                Platform.runLater(() -> {
+                    predict.setDisable(false);
+
+                    text.setText("Select An Option:");
+                });
+            });
+            thread.setDaemon(false);
+            thread.start();
         });
 
         predict.setOnAction(event -> {
-            boolean result = hebb.predict(matrix);
-            if (result) {
-                text.setText("The Predict Character Is: X");
-                Main.log("X Predicted.");
-            } else {
-                text.setText("The Predict Character Is: O");
-                Main.log("O Predicted.");
+            int result = 0;
+            if (algorithm.equals(Algorithm.HEBB)) {
+                result = hebb.predict(matrix) ? 1 : -1;
+            } else if (algorithm.equals(Algorithm.PERCEPTRON)) {
+                result = perceptron.predict(matrix, true);
+            } else if (algorithm.equals(Algorithm.MULTICLASSPERCEPTRON)) {
+                result = multiClassPerceptron.predict(matrix);
             }
-            Main.logSep();
+            if (result == 1) {
+                text.setText("The Predict Character Is: X");
+                AlgorithmController.log("X Predicted.");
+            } else if (result == -1) {
+                text.setText("The Predict Character Is: O");
+                AlgorithmController.log("O Predicted.");
+            } else {
+                text.setText("The Predict Character Is: UNKNOWN");
+                AlgorithmController.log("Unable To Predict.");
+            }
+            AlgorithmController.logSep();
         });
 
         random.setOnAction(event -> generateRandomData(matrix, pane, centerPane));
@@ -137,24 +178,29 @@ public class MainController implements Initializable {
                 add.setStyle("-fx-background-color: #32002f");
                 x.setDisable(false);
                 o.setDisable(false);
-                Main.log("Add Mode Enabled.");
+                AlgorithmController.log("Add Mode Enabled.");
             } else {
                 add.setStyle("-fx-background-color: #0073da");
                 addMode.set(false);
                 x.setDisable(true);
                 o.setDisable(true);
-                Main.log("Add Mode Disabled.");
+                AlgorithmController.log("Add Mode Disabled.");
             }
+        });
+
+        change.setOnAction(event -> {
+            change.getScene().getWindow().hide();
+            primaryStage.show();
         });
 
         x.setOnAction(event -> {
             if (addMode.get()) {
                 Data data = new Data("X", matrix);
                 helper.writeData(data);
-                Main.log("Data");
-                Main.logMatrix(matrix);
-                Main.log("Added To Train Set As: X");
-                Main.logSep();
+                AlgorithmController.log("Data");
+                AlgorithmController.logMatrix(matrix);
+                AlgorithmController.log("Added To Train Set As: X");
+                AlgorithmController.logSep();
                 text.setText("Select An Option:");
 
                 add.setStyle("-fx-background-color: #0073da");
@@ -170,10 +216,10 @@ public class MainController implements Initializable {
                 Data data = new Data("O", matrix);
                 helper.writeData(data);
 
-                Main.log("Data");
-                Main.logMatrix(matrix);
-                Main.log("Added To Train Set As: O");
-                Main.logSep();
+                AlgorithmController.log("Data");
+                AlgorithmController.logMatrix(matrix);
+                AlgorithmController.log("Added To Train Set As: O");
+                AlgorithmController.logSep();
                 text.setText("Select An Option:");
 
                 add.setStyle("-fx-background-color: #0073da");
@@ -190,8 +236,8 @@ public class MainController implements Initializable {
         Arrays.fill(matrix, -1);
         drawButtons(matrix, pane, centerPane);
         text.setText("Select An Option:");
-        Main.log("Board Cleared.");
-        Main.logSep();
+        AlgorithmController.log("Board Cleared.");
+        AlgorithmController.logSep();
     }
 
     private void drawButtons(int[] matrix, GridPane pane, StackPane centerPane) {
@@ -228,19 +274,36 @@ public class MainController implements Initializable {
     }
 
     private void generateRandomData(int[] matrix, GridPane pane, StackPane centerPane) {
-        Main.log("Start Generating Random Data:");
+        AlgorithmController.log("Start Generating Random Data:");
         SecureRandom random = new SecureRandom();
 
         for (int i = 0; i < matrix.length; i++) {
             matrix[i] = random.nextInt() % 2 == 0 ? 1 : -1;
         }
-        Main.log("The Data Is Created:");
-        Main.logMatrix(matrix);
-        Main.logSep();
+        AlgorithmController.log("The Data Is Created:");
+        AlgorithmController.logMatrix(matrix);
+        AlgorithmController.logSep();
         drawButtons(matrix, pane, centerPane);
     }
 
     public TextArea getArea() {
         return area;
+    }
+
+    public void setAlgorithm(Algorithm selectedAlgorithm) {
+        this.algorithm = selectedAlgorithm;
+    }
+
+    public void setHelperClass(GsonHelper helperClass) {
+        this.helper = helperClass;
+        this.helper.previewBuilder();
+    }
+
+    public void setData(Map<String, Double> data) {
+        this.data = data;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 }

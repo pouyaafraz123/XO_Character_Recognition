@@ -1,5 +1,6 @@
 package algorithm;
 
+import controller.AlgorithmController;
 import main.Main;
 import model.Data;
 
@@ -29,15 +30,15 @@ public class Hebb {
             bias = bias + label;
         }
 
-        Main.log("The Dataset Trained Successfully.");
-        Main.log("The Trained Weights Are: \n" + Arrays.toString(weights));
-        Main.log("The Trained Bias Are: " + bias);
+        AlgorithmController.log("The Dataset Trained Successfully.");
+        AlgorithmController.log("The Trained Weights Are: \n" + Arrays.toString(weights));
+        AlgorithmController.log("The Trained Bias Are: " + bias);
     }
 
     public boolean predict(int[] points) {
-        Main.log("Start Prediction...");
-        Main.log("Data Matrix Is: ");
-        Main.logMatrix(points);
+        AlgorithmController.log("Start Prediction...");
+        AlgorithmController.log("Data Matrix Is: ");
+        AlgorithmController.logMatrix(points);
 
         double sum = 0;
 
@@ -46,7 +47,7 @@ public class Hebb {
         }
         sum += bias;
 
-        Main.log("Prediction Rate Is: " + sum);
+        AlgorithmController.log("Prediction Rate Is: " + sum);
 
         return sum >= 0;
     }

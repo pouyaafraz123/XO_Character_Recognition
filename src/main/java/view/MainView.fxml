@@ -164,6 +164,25 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <JFXButton fx:id="change" buttonType="RAISED" layoutX="35.0" layoutY="90.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Change Training Mode">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </JFXButton>
                </children>
                <padding>
                   <Insets left="25.0" right="25.0" />
