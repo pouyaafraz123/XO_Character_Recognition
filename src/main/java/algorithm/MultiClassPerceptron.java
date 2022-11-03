@@ -26,8 +26,13 @@ public class MultiClassPerceptron {
         Arrays.fill(weights[1], 0);
         bias[0] = 0;
         bias[1] = 0;
+
+        double minFault = Double.MAX_VALUE;
+        boolean stopped = false;
+
         int x = 0;
         while (x < count) {
+            double faultCount = 0;
             for (Data data : dataset) {
                 int label = Objects.equals(data.getLabel(), "X") ? 1 : -1;
                 int[] matrix = data.getPoints();
@@ -36,22 +41,42 @@ public class MultiClassPerceptron {
                         weights[0][j] = weights[0][j] + (matrix[j] * label * learningRate);
                     }
                     bias[0] = bias[0] + label * learningRate;
+
+                    faultCount++;
                 }
                 if ((activationFunction(matrix, weights[1], bias[1]) * -1) != label) {
                     for (int j = 0; j < matrix.length; j++) {
                         weights[1][j] = weights[1][j] + (matrix[j] * label * learningRate * -1);
                     }
                     bias[1] = bias[1] + (label * learningRate * -1);
+
+                    faultCount++;
                 }
+            }
+            minFault = Math.min(minFault,faultCount/(double) dataset.length);
+
+            if (faultCount==0){
+                stopped = true;
+                break;
             }
             x++;
         }
         AlgorithmController.log("The Dataset Trained Successfully.");
+        AlgorithmController.logSep();
+        if (stopped){
+            AlgorithmController.log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
+            AlgorithmController.logSep();
+        }
         AlgorithmController.log("The Trained Weights For X Are: \n" + Arrays.toString(weights[0]));
         AlgorithmController.log("The Trained Bias For X Are: " + bias[0]);
+        AlgorithmController.logSep();
 
-        AlgorithmController.log("The Trained Weights For X Are: \n" + Arrays.toString(weights[1]));
-        AlgorithmController.log("The Trained Bias For X Are: " + bias[1]);
+        AlgorithmController.log("The Trained Weights For O Are: \n" + Arrays.toString(weights[1]));
+        AlgorithmController.log("The Trained Bias For O Are: " + bias[1]);
+
+        AlgorithmController.logSep();
+        AlgorithmController.log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
+        AlgorithmController.logSep();
     }
 
     public int activationFunction(int[] points, double[] weights, double bias) {

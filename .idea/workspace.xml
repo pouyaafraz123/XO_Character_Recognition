@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v2">
-      <change afterPath="$PROJECT_DIR$/data2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Algorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/AlgorithmView.fxml" afterDir="false" />
+    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v3 - new">
+      <change afterPath="$PROJECT_DIR$/mainData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +49,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/IntellijProjects/Hebb_HM&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/IntellijProjects/XO_Recognition_HM&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -67,6 +61,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\IntellijProjects\XO_Recognition_HM" />
       <recent name="C:\IntellijProjects\Hebb_HM" />
     </key>
   </component>
@@ -74,19 +69,6 @@
     <configuration name="main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="XO_Recognition_HM" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="XO_Recognition_HM" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="XO_Recognition_HM" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -119,6 +101,18 @@
       <workItem from="1666953411897" duration="2913000" />
       <workItem from="1666956484877" duration="9746000" />
       <workItem from="1666977668133" duration="11722000" />
+      <workItem from="1666991359961" duration="372000" />
+      <workItem from="1667045821734" duration="1446000" />
+      <workItem from="1667068990050" duration="1444000" />
+      <workItem from="1667073322475" duration="2591000" />
+      <workItem from="1667110109910" duration="304000" />
+      <workItem from="1667110479811" duration="713000" />
+      <workItem from="1667254601931" duration="16000" />
+      <workItem from="1667283546290" duration="719000" />
+      <workItem from="1667341736348" duration="1294000" />
+      <workItem from="1667363116702" duration="1639000" />
+      <workItem from="1667394366037" duration="502000" />
+      <workItem from="1667496725749" duration="942000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1666568599249</created>
@@ -134,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666645046542</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="v3 - new">
+      <created>1666991429022</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1666991429022</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +156,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="v1" />
     <MESSAGE value="v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="v2" />
+    <MESSAGE value="v3 - new" />
+    <option name="LAST_COMMIT_MESSAGE" value="v3 - new" />
   </component>
 </project>

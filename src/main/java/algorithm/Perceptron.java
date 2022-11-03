@@ -25,7 +25,10 @@ public class Perceptron {
         Arrays.fill(weights, 0);
         bias = 0;
         int x = 0;
+        double minFault = Double.MAX_VALUE;
+        boolean stopped = false;
         while (x < count) {
+            double faultCount = 0;
             for (Data data : dataset) {
                 int label = Objects.equals(data.getLabel(), "X") ? 1 : -1;
                 int[] matrix = data.getPoints();
@@ -34,13 +37,29 @@ public class Perceptron {
                         weights[j] = weights[j] + (matrix[j] * label * learningRate);
                     }
                     bias = bias + label * learningRate;
+                    faultCount++;
                 }
+            }
+            minFault = Math.min(minFault,faultCount/(double) dataset.length);
+
+            if (faultCount==0){
+                stopped = true;
+                break;
             }
             x++;
         }
         AlgorithmController.log("The Dataset Trained Successfully.");
+        AlgorithmController.logSep();
+        if (stopped){
+            AlgorithmController.log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
+            AlgorithmController.logSep();
+        }
+
         AlgorithmController.log("The Trained Weights Are: \n" + Arrays.toString(weights));
         AlgorithmController.log("The Trained Bias Are: " + bias);
+        AlgorithmController.logSep();
+        AlgorithmController.log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
+        AlgorithmController.logSep();
     }
 
     public int predict(int[] points, boolean p) {
@@ -48,6 +67,7 @@ public class Perceptron {
             AlgorithmController.log("Start Prediction...");
             AlgorithmController.log("Data Matrix Is: ");
             AlgorithmController.logMatrix(points);
+            AlgorithmController.logSep();
         }
 
         double sum = 0;

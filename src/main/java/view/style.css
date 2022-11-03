@@ -8,6 +8,10 @@
     -fx-background-radius: 250px;
 }
 
+.btn:hover{
+    -fx-background-color: #0a4b9f;
+}
+
 .lay{
     -fx-border-color: #0073da;
     -fx-border-radius: 25px;

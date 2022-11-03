@@ -5,7 +5,6 @@ import algorithm.MultiClassPerceptron;
 import algorithm.Perceptron;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.Main;
 import model.Algorithm;
 import model.Data;
 import tools.GsonHelper;
@@ -121,7 +119,6 @@ public class MainController implements Initializable {
             AlgorithmController.log("Reading Data Finished.");
             AlgorithmController.log("Start Training For " + trainSet.length + " Data.");
 
-            Thread thread = new Thread(() -> {
                 long startTime = System.currentTimeMillis();
                 if (algorithm.equals(Algorithm.HEBB)) {
                     hebb = new Hebb(trainSet);
@@ -136,14 +133,12 @@ public class MainController implements Initializable {
 
                 AlgorithmController.log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
                 AlgorithmController.logSep();
-                Platform.runLater(() -> {
+
                     predict.setDisable(false);
 
                     text.setText("Select An Option:");
-                });
-            });
-            thread.setDaemon(false);
-            thread.start();
+
+
         });
 
         predict.setOnAction(event -> {

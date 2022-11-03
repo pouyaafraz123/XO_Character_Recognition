@@ -1,7 +1,6 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,19 +59,7 @@ public class AlgorithmController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         JFXButton button = new JFXButton();
-        button.setPrefHeight(60);
-        button.setPrefWidth(1000);
-        button.setOnAction(event1 -> {
-            FileDialog dialog = new FileDialog(new JFrame());
-            dialog.setVisible(true);
-            if (dialog.getFiles().length > 0) {
-                file = dialog.getFiles()[0];
-            }
-        });
-        button.setText("Select Dataset File");
-        button.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.BOLD, FontPosture.ITALIC, 20));
-        button.getStyleClass().add("btn");
-        VBox.setMargin(button, new Insets(25, 0, 0, 0));
+        setButtonFunc(button);
 
         TextField field1 = new TextField();
         field1.setPromptText("Learning Rate");
@@ -109,32 +96,18 @@ public class AlgorithmController implements Initializable {
         perceptron.setOnAction(event -> {
             algorithm = Algorithm.PERCEPTRON;
 
-            parent.getChildren().add(button);
-            parent.getChildren().add(field1);
-            parent.getChildren().add(field2);
-            parent.getChildren().add(field3);
-            parent.getChildren().remove(hebb);
-            parent.getChildren().remove(mPerceptron);
-
-            checkButtons();
+            addItems(button, field1, field2, field3, hebb, mPerceptron);
         });
 
         mPerceptron.setOnAction(event -> {
             algorithm = Algorithm.MULTICLASSPERCEPTRON;
 
-            parent.getChildren().add(button);
-            parent.getChildren().add(field1);
-            parent.getChildren().add(field2);
-            parent.getChildren().add(field3);
-            parent.getChildren().remove(perceptron);
-            parent.getChildren().remove(hebb);
-
-            checkButtons();
+            addItems(button, field1, field2, field3, perceptron, hebb);
         });
 
         submit.setOnAction(event -> {
             if (file == null) {
-                file = new File("data1.json");
+                file = new File("mainData.json");
             }
             helper = new GsonHelper(file);
 
@@ -158,6 +131,37 @@ public class AlgorithmController implements Initializable {
 
     }
 
+    private void createInput(TextField field,String label){
+
+    }
+
+    private void setButtonFunc(JFXButton button) {
+        button.setPrefHeight(60);
+        button.setPrefWidth(1000);
+        button.setOnAction(event1 -> {
+            FileDialog dialog = new FileDialog(new JFrame());
+            dialog.setVisible(true);
+            if (dialog.getFiles().length > 0) {
+                file = dialog.getFiles()[0];
+            }
+        });
+        button.setText("Select Dataset File");
+        button.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.BOLD, FontPosture.ITALIC, 20));
+        button.getStyleClass().add("btn");
+        VBox.setMargin(button, new Insets(25, 0, 0, 0));
+    }
+
+    private void addItems(JFXButton button, TextField field1, TextField field2, TextField field3, JFXButton hebb, JFXButton mPerceptron) {
+        parent.getChildren().add(button);
+        parent.getChildren().add(field1);
+        parent.getChildren().add(field2);
+        parent.getChildren().add(field3);
+        parent.getChildren().remove(hebb);
+        parent.getChildren().remove(mPerceptron);
+
+        checkButtons();
+    }
+
     private void startApplication(Map<String, Double> data) {
         try {
             FXMLLoader loader = new FXMLLoader(new File("src/main/java/view/MainView.fxml").toURI().toURL());
@@ -168,13 +172,14 @@ public class AlgorithmController implements Initializable {
             controller.setHelperClass(getHelperClass());
             controller.setData(data);
             controller.setPrimaryStage(primaryStage);
-
             textComponent = controller.getArea();
+
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("X O Recognition ,Hebb");
             stage.show();
+
             log("Application Started Successfully.");
             log("Dataset File: " + file.getAbsolutePath());
             logSep();
@@ -226,25 +231,24 @@ public class AlgorithmController implements Initializable {
     }
 
     public static void log(String log) {
-        Platform.runLater(() -> textComponent.appendText(log + "\n"));
+        textComponent.appendText(log + "\n");
 
     }
 
     public static void logSep() {
-        Platform.runLater(() -> textComponent.appendText("--------------" + "\n"));
+        textComponent.appendText("--------------" + "\n");
 
     }
 
     public static void logMatrix(int[] data) {
-        Platform.runLater(() -> {
-            for (int i = 0; i < 5; i++) {
-                StringBuilder builder = new StringBuilder();
-                for (int j = 0; j < 5; j++) {
-                    builder.append(data[i * 5 + j] == 1 ? "#" : ".").append("\t");
-                }
-                log(builder.toString());
+        for (int i = 0; i < 5; i++) {
+            StringBuilder builder = new StringBuilder();
+            for (int j = 0; j < 5; j++) {
+                builder.append(data[i * 5 + j] == 1 ? "#" : ".").append("\t");
             }
-        });
+            log(builder.toString());
+        }
+
     }
 
 
