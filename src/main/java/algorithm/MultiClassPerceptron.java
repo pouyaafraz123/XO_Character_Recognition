@@ -1,11 +1,13 @@
 package algorithm;
 
-import controller.AlgorithmController;
-import main.Main;
 import model.Data;
 
 import java.util.Arrays;
 import java.util.Objects;
+
+import static controller.AlgorithmController.log;
+import static controller.AlgorithmController.logSep;
+
 
 public class MultiClassPerceptron {
     private final double[] bias = new double[2];
@@ -16,6 +18,7 @@ public class MultiClassPerceptron {
     private final double learningRate;
 
     public MultiClassPerceptron(Data[] dataset, double theta, double learningRate) {
+        log("Multiclass Perceptron Initialized.");
         this.dataset = dataset;
         this.theta = theta;
         this.learningRate = learningRate;
@@ -61,22 +64,22 @@ public class MultiClassPerceptron {
             }
             x++;
         }
-        AlgorithmController.log("The Dataset Trained Successfully.");
-        AlgorithmController.logSep();
+        log("The Dataset Trained Successfully.");
+        logSep();
         if (stopped){
-            AlgorithmController.log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
-            AlgorithmController.logSep();
+            log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
+            logSep();
         }
-        AlgorithmController.log("The Trained Weights For X Are: \n" + Arrays.toString(weights[0]));
-        AlgorithmController.log("The Trained Bias For X Are: " + bias[0]);
-        AlgorithmController.logSep();
+        log("The Trained Weights For X Are: \n" + Arrays.toString(weights[0]));
+        log("The Trained Bias For X Are: " + bias[0]);
+        logSep();
 
-        AlgorithmController.log("The Trained Weights For O Are: \n" + Arrays.toString(weights[1]));
-        AlgorithmController.log("The Trained Bias For O Are: " + bias[1]);
+        log("The Trained Weights For O Are: \n" + Arrays.toString(weights[1]));
+        log("The Trained Bias For O Are: " + bias[1]);
 
-        AlgorithmController.logSep();
-        AlgorithmController.log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
-        AlgorithmController.logSep();
+        logSep();
+        log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
+        logSep();
     }
 
     public int activationFunction(int[] points, double[] weights, double bias) {
@@ -99,8 +102,8 @@ public class MultiClassPerceptron {
     public int predict(int[] points) {
         int x = activationFunction(points, weights[0], bias[0]);
         int o = activationFunction(points, weights[1], bias[1]);
-        AlgorithmController.log("Prediction Rate For X = " + x + ".");
-        AlgorithmController.log("Prediction Rate For O = " + o + ".");
+        log("Prediction Rate For X = " + x + ".");
+        log("Prediction Rate For O = " + o + ".");
 
         if (x == 1 && o == -1) {
             return 1;

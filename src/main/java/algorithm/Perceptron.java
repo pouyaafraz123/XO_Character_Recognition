@@ -6,16 +6,17 @@ import model.Data;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static controller.AlgorithmController.*;
+
 public class Perceptron {
     private double bias;
     private final double[] weights = new double[25];
-    // private double[] pWeights = new double[25];
     private final Data[] dataset;
-
     private final double theta;
     private final double learningRate;
 
     public Perceptron(Data[] dataset, double theta, double learningRate) {
+        log("Perceptron Initialized.");
         this.dataset = dataset;
         this.theta = theta;
         this.learningRate = learningRate;
@@ -48,26 +49,26 @@ public class Perceptron {
             }
             x++;
         }
-        AlgorithmController.log("The Dataset Trained Successfully.");
-        AlgorithmController.logSep();
+        log("The Dataset Trained Successfully.");
+        logSep();
         if (stopped){
-            AlgorithmController.log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
-            AlgorithmController.logSep();
+            log("The Training Stopped At Number "+(x-1)+" Epochs. Cause Weights Are No Longer Updated.");
+            logSep();
         }
 
-        AlgorithmController.log("The Trained Weights Are: \n" + Arrays.toString(weights));
-        AlgorithmController.log("The Trained Bias Are: " + bias);
-        AlgorithmController.logSep();
-        AlgorithmController.log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
-        AlgorithmController.logSep();
+        log("The Trained Weights Are: \n" + Arrays.toString(weights));
+        log("The Trained Bias Are: " + bias);
+        logSep();
+        log("Minimum Fault Percent: "+(minFault/ (double) dataset.length));
+        logSep();
     }
 
     public int predict(int[] points, boolean p) {
         if (p) {
-            AlgorithmController.log("Start Prediction...");
-            AlgorithmController.log("Data Matrix Is: ");
-            AlgorithmController.logMatrix(points);
-            AlgorithmController.logSep();
+            log("Start Prediction...");
+            log("Data Matrix Is: ");
+            logMatrix(points);
+            logSep();
         }
 
         double sum = 0;
@@ -77,7 +78,7 @@ public class Perceptron {
         }
         sum += bias;
         if (p) {
-            AlgorithmController.log("Prediction Rate Is: " + sum);
+            log("Prediction Rate Is: " + sum);
         }
 
         if (sum > theta) {

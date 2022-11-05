@@ -53,8 +53,21 @@
                   <Font name="System Bold Italic" size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="25.0" />
+                  <Insets />
                </VBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="adaline" buttonType="RAISED" layoutX="35.0" layoutY="298.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Adaline">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#a41919" />
+                        <Stop color="#130c86" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
             </JFXButton>
          </children>
          <padding>

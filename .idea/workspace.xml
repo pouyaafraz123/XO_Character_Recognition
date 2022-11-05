@@ -4,15 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v3 - new">
-      <change afterPath="$PROJECT_DIR$/mainData.json" afterDir="false" />
+    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v4">
+      <change afterPath="$PROJECT_DIR$/data3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/Adaline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AlgorithmView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AlgorithmView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +68,9 @@
       <recent name="C:\IntellijProjects\XO_Recognition_HM" />
       <recent name="C:\IntellijProjects\Hebb_HM" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\IntellijProjects\XO_Recognition_HM" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -113,6 +120,13 @@
       <workItem from="1667363116702" duration="1639000" />
       <workItem from="1667394366037" duration="502000" />
       <workItem from="1667496725749" duration="942000" />
+      <workItem from="1667513034836" duration="253000" />
+      <workItem from="1667556227515" duration="618000" />
+      <workItem from="1667559271505" duration="66000" />
+      <workItem from="1667592619679" duration="3652000" />
+      <workItem from="1667600635224" duration="38000" />
+      <workItem from="1667601955245" duration="5000" />
+      <workItem from="1667677408091" duration="10063000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1666568599249</created>
@@ -135,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666991429022</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v4">
+      <created>1667513267404</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1667513267404</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +178,7 @@
     <MESSAGE value="v1" />
     <MESSAGE value="v2" />
     <MESSAGE value="v3 - new" />
-    <option name="LAST_COMMIT_MESSAGE" value="v3 - new" />
+    <MESSAGE value="v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="v4" />
   </component>
 </project>

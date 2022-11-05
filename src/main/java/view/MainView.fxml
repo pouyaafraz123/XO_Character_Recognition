@@ -132,7 +132,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" disable="true" layoutX="35.0" layoutY="233.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="X" fx:id="x">
+                  <JFXButton buttonType="RAISED" layoutX="35.0" layoutY="233.0" opacity="0.5" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="X" fx:id="x">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -145,10 +145,10 @@
                         <Font name="System Bold Italic" size="20.0" />
                      </font>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="o" buttonType="RAISED" disable="true" layoutX="35.0" layoutY="253.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="O">
+                  <JFXButton fx:id="o" buttonType="RAISED" layoutX="35.0" layoutY="253.0" opacity="0.5" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="O">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -161,7 +161,7 @@
                         <Font name="System Bold Italic" size="20.0" />
                      </font>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
                   <JFXButton fx:id="change" buttonType="RAISED" layoutX="35.0" layoutY="90.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Change Training Mode">

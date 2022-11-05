@@ -7,12 +7,16 @@ import model.Data;
 import java.util.Arrays;
 import java.util.Objects;
 
+import static controller.AlgorithmController.*;
+
+
 public class Hebb {
     private double bias;
     private final double[] weights = new double[25];
     private final Data[] dataset;
 
     public Hebb(Data[] dataset) {
+        log("Hebb Initialized.");
         this.dataset = dataset;
     }
 
@@ -30,16 +34,17 @@ public class Hebb {
             bias = bias + label;
         }
 
-        AlgorithmController.log("The Dataset Trained Successfully.");
-        AlgorithmController.log("The Trained Weights Are: \n" + Arrays.toString(weights));
-        AlgorithmController.log("The Trained Bias Are: " + bias);
+        log("The Dataset Trained Successfully.");
+        logSep();
+        log("The Trained Weights Are: \n" + Arrays.toString(weights));
+        log("The Trained Bias Are: " + bias);
     }
 
     public boolean predict(int[] points) {
-        AlgorithmController.log("Start Prediction...");
-        AlgorithmController.log("Data Matrix Is: ");
-        AlgorithmController.logMatrix(points);
-
+        log("Start Prediction...");
+        log("Data Matrix Is: ");
+        logMatrix(points);
+        logSep();
         double sum = 0;
 
         for (int i = 0; i < weights.length; i++) {
@@ -47,7 +52,7 @@ public class Hebb {
         }
         sum += bias;
 
-        AlgorithmController.log("Prediction Rate Is: " + sum);
+        log("Prediction Rate Is: " + sum);
 
         return sum >= 0;
     }
