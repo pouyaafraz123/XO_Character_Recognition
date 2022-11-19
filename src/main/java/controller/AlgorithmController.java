@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,6 +51,8 @@ public class AlgorithmController implements Initializable {
     private JFXButton mPerceptron;
     @FXML
     private JFXButton adaline;
+    @FXML
+    private JFXButton mlp;
 
     private Algorithm algorithm;
     @FXML
@@ -59,8 +62,12 @@ public class AlgorithmController implements Initializable {
     private File file;
     private Stage primaryStage;
 
+    private JFXButton[] btns;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        btns = new JFXButton[]{hebb, perceptron, mPerceptron, adaline, mlp};
+
         Map<String, Double> map = new HashMap<>();
 
         JFXButton button = new JFXButton();
@@ -69,25 +76,32 @@ public class AlgorithmController implements Initializable {
         TextField field1 = createInput("Learning Rate");
         TextField field2 = createInput("Theta");
         TextField field3 = createInput("Count");
+        TextField field4 = createInput("Hidden Neurones Count");
+        TextField field5 = createInput("Seed");
 
         hebb.setOnAction(event -> {
             algorithm = Algorithm.HEBB;
-            addItems(perceptron, mPerceptron, adaline, button);
+            addItems(hebb, button);
         });
 
         perceptron.setOnAction(event -> {
             algorithm = Algorithm.PERCEPTRON;
-            addItems(hebb, mPerceptron, adaline, button, field1, field2, field3);
+            addItems(perceptron, button, field1, field2, field3);
         });
 
         mPerceptron.setOnAction(event -> {
             algorithm = Algorithm.MULTICLASSPERCEPTRON;
-            addItems(perceptron, hebb, adaline, button, field1, field2, field3);
+            addItems(mPerceptron, button, field1, field2, field3);
         });
 
         adaline.setOnAction(event -> {
             algorithm = Algorithm.ADALINE;
-            addItems(hebb, perceptron, mPerceptron, button, field1, field3);
+            addItems(adaline, button, field1, field3);
+        });
+
+        mlp.setOnAction(event -> {
+            algorithm = Algorithm.MULTILAYERPERCEPTRON;
+            addItems(mlp, button, field1, field3, field4,field5);
         });
 
         submit.setOnAction(event -> {
@@ -99,17 +113,18 @@ public class AlgorithmController implements Initializable {
             String s1 = field1.getText().isEmpty() ? "0.1" : field1.getText();
             String s2 = field2.getText().isEmpty() ? "0" : field2.getText();
             String s3 = field3.getText().isEmpty() ? "100" : field3.getText();
+            String s4 = field4.getText().isEmpty() ? "100" : field4.getText();
+            String s5 = field5.getText().isEmpty() ? "97" : field5.getText();
 
             map.put("rate", Double.valueOf(s1));
             map.put("theta", Double.valueOf(s2));
             map.put("count", Double.valueOf(s3));
+            map.put("hidden", Double.valueOf(s4));
+            map.put("seed", Double.valueOf(s5));
 
             primaryStage.close();
             parent.getChildren().clear();
-            parent.getChildren().add(hebb);
-            parent.getChildren().add(perceptron);
-            parent.getChildren().add(mPerceptron);
-            parent.getChildren().add(adaline);
+            for (JFXButton btn : btns) parent.getChildren().add(btn);
             startApplication(map);
             algorithm = null;
             checkButtons();
@@ -143,11 +158,13 @@ public class AlgorithmController implements Initializable {
         VBox.setMargin(button, new Insets(25, 0, 0, 0));
     }
 
-    private void addItems(JFXButton btn1, JFXButton btn2, JFXButton btn3, Node... nodes) {
+    private void addItems(JFXButton btn, Node... nodes) {
         parent.getChildren().addAll(nodes);
-        parent.getChildren().remove(btn1);
-        parent.getChildren().remove(btn2);
-        parent.getChildren().remove(btn3);
+        for (JFXButton button : btns) {
+            if (!button.equals(btn)) {
+                parent.getChildren().remove(button);
+            }
+        }
 
         checkButtons();
     }
@@ -173,9 +190,10 @@ public class AlgorithmController implements Initializable {
                 stage.setTitle("X O Recognition ,Perceptron");
             } else if (getSelectedAlgorithm().equals(Algorithm.MULTICLASSPERCEPTRON)) {
                 stage.setTitle("X O Recognition ,Multiclass Perceptron");
-            }
-            if (getSelectedAlgorithm().equals(Algorithm.ADALINE)) {
+            } else if (getSelectedAlgorithm().equals(Algorithm.ADALINE)) {
                 stage.setTitle("X O Recognition ,Adaline");
+            }else if (getSelectedAlgorithm().equals(Algorithm.MULTILAYERPERCEPTRON)) {
+                stage.setTitle("X O Recognition ,Multi Layer Perceptron");
             }
             stage.show();
 
@@ -202,6 +220,12 @@ public class AlgorithmController implements Initializable {
                 log("Algorithm Parameters:");
                 log("Learning Rate: " + data.get("rate"));
                 log("Train Count Is: " + data.get("count"));
+            }else if (algorithm.equals(Algorithm.MULTILAYERPERCEPTRON)) {
+                log("Training Algorithm Is: Multi Layer Perceptron");
+                log("Algorithm Parameters:");
+                log("Learning Rate: " + data.get("rate"));
+                log("Hidden Neurons Count: " + data.get("hidden"));
+                log("Train Count Is: " + data.get("count"));
             }
             logSep();
         } catch (IOException e) {
@@ -210,10 +234,7 @@ public class AlgorithmController implements Initializable {
     }
 
     private void checkButtons() {
-        hebb.setStyle(BUTTON_DEFAULT_STYLE);
-        perceptron.setStyle(BUTTON_DEFAULT_STYLE);
-        mPerceptron.setStyle(BUTTON_DEFAULT_STYLE);
-        adaline.setStyle(BUTTON_DEFAULT_STYLE);
+        for (JFXButton btn : btns) btn.setStyle(BUTTON_DEFAULT_STYLE);
         if (algorithm != null) {
             if (algorithm.equals(Algorithm.HEBB)) {
                 hebb.setStyle(BUTTON_SELECTED_STYLE);
@@ -227,6 +248,10 @@ public class AlgorithmController implements Initializable {
             if (algorithm.equals(Algorithm.ADALINE)) {
                 adaline.setStyle(BUTTON_SELECTED_STYLE);
             }
+            if (algorithm.equals(Algorithm.MULTILAYERPERCEPTRON)) {
+                mlp.setStyle(BUTTON_SELECTED_STYLE);
+            }
+
         }
     }
 
@@ -239,13 +264,12 @@ public class AlgorithmController implements Initializable {
     }
 
     public static void log(String log) {
-        textComponent.appendText(log + "\n");
+        Platform.runLater(() -> textComponent.appendText(log + "\n"));
 
     }
 
     public static void logSep() {
-        textComponent.appendText("--------------" + "\n");
-
+        log("--------------");
     }
 
     public static void logMatrix(int[] data) {
@@ -256,7 +280,6 @@ public class AlgorithmController implements Initializable {
             }
             log(builder.toString());
         }
-
     }
 
 

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -12,68 +13,85 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AlgorithmController">
    <children>
-      <VBox fx:id="parent" alignment="CENTER" layoutX="170.0" layoutY="210.0" prefHeight="200.0" prefWidth="100.0" spacing="25.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-         <children>
-            <JFXButton fx:id="hebb" buttonType="RAISED" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Hebb">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="perceptron" buttonType="RAISED" layoutX="35.0" layoutY="117.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Perceptron">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="mPerceptron" buttonType="RAISED" layoutX="35.0" layoutY="202.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Multi Class Percepteron">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </JFXButton>
-            <JFXButton fx:id="adaline" buttonType="RAISED" layoutX="35.0" layoutY="298.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Adaline">
-               <ripplerFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#a41919" />
-                        <Stop color="#130c86" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </ripplerFill>
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </JFXButton>
-         </children>
-         <padding>
-            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-         </padding>
-      </VBox>
+      <ScrollPane hbarPolicy="NEVER" layoutY="80.0" pannable="true" AnchorPane.bottomAnchor="115.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <content>
+            <VBox fx:id="parent" alignment="CENTER" prefWidth="399.0" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="hebb" buttonType="RAISED" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Hebb">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="perceptron" buttonType="RAISED" layoutX="35.0" layoutY="117.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Perceptron">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="mPerceptron" buttonType="RAISED" layoutX="35.0" layoutY="202.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Multi Class Percepteron">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="adaline" buttonType="RAISED" layoutX="35.0" layoutY="298.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Adaline">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="mlp" buttonType="RAISED" layoutX="35.0" layoutY="290.0" prefHeight="60.0" prefWidth="1000.0" styleClass="btn" text="Multi Layer Perceptron">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#a41919" />
+                              <Stop color="#130c86" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
       <HBox alignment="CENTER" layoutX="86.0" layoutY="-17.0" prefHeight="80.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Training Algorithms">

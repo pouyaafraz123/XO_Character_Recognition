@@ -30,7 +30,7 @@ public class Main extends Application {
         AlgorithmController controller = aLoader.getController();
         controller.setPrimaryStage(primaryStage);
         primaryStage.setScene(aScene);
-       /* primaryStage.setResizable(false);*/
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Algorithms");
         primaryStage.show();
     }

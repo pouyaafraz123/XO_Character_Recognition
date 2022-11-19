@@ -31,3 +31,30 @@
     -fx-text-fill: #fff;
 }
 
+.scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px;
+}
+
+
+.chart-plot-background {
+    -fx-background-color: rgba(0, 64, 255, 0.04);
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: rgb(255, 255, 255);
+    -fx-stroke-width: 0.5;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: rgb(255, 255, 255);
+    -fx-stroke-width: 0.5;
+}

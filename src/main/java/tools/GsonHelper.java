@@ -2,11 +2,12 @@ package tools;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import main.Main;
 import model.Data;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class GsonHelper {
     private final Gson gson;

@@ -1,15 +1,13 @@
 package controller;
 
-import algorithm.Adaline;
-import algorithm.Hebb;
-import algorithm.MultiClassPerceptron;
-import algorithm.Perceptron;
+import algorithm.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -30,9 +28,7 @@ import tools.GsonHelper;
 
 import java.net.URL;
 import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static controller.AlgorithmController.*;
@@ -93,9 +89,12 @@ public class MainController implements Initializable {
     private Perceptron perceptron;
     private MultiClassPerceptron multiClassPerceptron;
     private Adaline adaline;
+    private MultiLayerPerceptron mlp;
     private Stage primaryStage;
-    FadeTransition fadeTransition = new FadeTransition();
-    ScaleTransition scaleTransition = new ScaleTransition();
+    private final FadeTransition fadeTransition = new FadeTransition();
+    private final ScaleTransition scaleTransition = new ScaleTransition();
+    private Timer timer;
+    private long time = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -126,16 +125,12 @@ public class MainController implements Initializable {
             Data[] trainSet = startTrain();
 
             trainData(trainSet);
-
-            predict.setDisable(false);
-            text.setText("Select An Option:");
         });
 
         predict.setOnAction(event -> {
             clearAnimation();
 
             int result = getPredictionResult(matrix);
-            System.out.println(Arrays.toString(matrix));
             displayResult(result);
         });
 
@@ -155,26 +150,26 @@ public class MainController implements Initializable {
 
         x.setOnAction(event -> {
             if (addMode.get()) {
-                addData(addMode,"X", matrix);
+                addData(addMode, "X", matrix);
                 clear(matrix, pane, centerPane);
             }
         });
 
         o.setOnAction(event -> {
             if (addMode.get()) {
-                addData(addMode,"O", matrix);
+                addData(addMode, "O", matrix);
                 clear(matrix, pane, centerPane);
             }
         });
 
     }
 
-    private void addData(AtomicBoolean addMode, String label,int[] matrix) {
+    private void addData(AtomicBoolean addMode, String label, int[] matrix) {
         Data data = new Data(label, matrix);
         helper.writeData(data);
         log("Data");
         logMatrix(matrix);
-        log("Added To Train Set As: "+label);
+        log("Added To Train Set As: " + label);
         logSep();
         text.setText("Select An Option:");
 
@@ -225,28 +220,58 @@ public class MainController implements Initializable {
             result = multiClassPerceptron.predict(matrix);
         } else if (algorithm.equals(Algorithm.ADALINE)) {
             result = adaline.predict(matrix);
+        } else if (algorithm.equals(Algorithm.MULTILAYERPERCEPTRON)) {
+            result = mlp.predict(matrix);
         }
         return result;
     }
 
     private void trainData(Data[] trainSet) {
-        long startTime = System.currentTimeMillis();
-        if (algorithm.equals(Algorithm.HEBB)) {
-            hebb = new Hebb(trainSet);
-            hebb.train();
-        } else if (algorithm.equals(Algorithm.PERCEPTRON)) {
-            perceptron = new Perceptron(trainSet, data.get("theta"), data.get("rate"));
-            perceptron.train((int) data.get("count").doubleValue());
-        } else if (algorithm.equals(Algorithm.MULTICLASSPERCEPTRON)) {
-            multiClassPerceptron = new MultiClassPerceptron(trainSet, data.get("theta"), data.get("rate"));
-            multiClassPerceptron.train((int) data.get("count").doubleValue());
-        } else if (algorithm.equals(Algorithm.ADALINE)) {
-            adaline = new Adaline(trainSet, data.get("rate"));
-            adaline.train((int) data.get("count").doubleValue());
-        }
+        new Thread(() -> {
+            time = 0;
+            Platform.runLater(() -> train.setDisable(true));
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.runLater(() -> text.setText("Train Time: " + time++ + " Seconds"));
+                }
+            }, 0, 1000);
 
-        log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
-        logSep();
+            long startTime = System.currentTimeMillis();
+            Double theta = data.get("theta");
+            Double rate = data.get("rate");
+            int count = (int) data.get("count").doubleValue();
+            int hidden = (int) data.get("hidden").doubleValue();
+            long seed = (long) data.get("seed").doubleValue();
+
+            if (algorithm.equals(Algorithm.HEBB)) {
+                hebb = new Hebb(trainSet);
+                hebb.train();
+            } else if (algorithm.equals(Algorithm.PERCEPTRON)) {
+                perceptron = new Perceptron(trainSet, theta, rate);
+                perceptron.train(count);
+            } else if (algorithm.equals(Algorithm.MULTICLASSPERCEPTRON)) {
+                multiClassPerceptron = new MultiClassPerceptron(trainSet, theta, rate);
+                multiClassPerceptron.train(count);
+            } else if (algorithm.equals(Algorithm.ADALINE)) {
+                adaline = new Adaline(trainSet, rate);
+                adaline.train(count);
+            } else if (algorithm.equals(Algorithm.MULTILAYERPERCEPTRON)) {
+                mlp = new MultiLayerPerceptron(trainSet, hidden, 2, rate);
+                mlp.train(count, seed);
+            }
+
+
+            log("Train Time: " + (System.currentTimeMillis() - startTime) + " Milli Seconds.");
+            logSep();
+            Platform.runLater(() -> {
+                train.setDisable(false);
+                predict.setDisable(false);
+                text.setText("Select An Option:");
+            });
+            timer.cancel();
+        }).start();
     }
 
     private Data[] startTrain() {

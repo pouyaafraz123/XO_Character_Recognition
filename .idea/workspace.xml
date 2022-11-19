@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v4">
-      <change afterPath="$PROJECT_DIR$/data3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/Adaline.java" afterDir="false" />
+    <list default="true" id="4fd1fe75-919c-4dbf-83e6-d8d007484cff" name="Changes" comment="v5">
+      <change afterPath="$PROJECT_DIR$/data5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/algorithm/MultiLayerPerceptron.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/Chart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Hebb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/MultiClassPerceptron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Perceptron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data1.json" beforeDir="false" afterPath="$PROJECT_DIR$/data1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preview.txt" beforeDir="false" afterPath="$PROJECT_DIR$/preview.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/algorithm/Adaline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/algorithm/Adaline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AlgorithmController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/GsonHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/AlgorithmView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AlgorithmView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,22 +50,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/IntellijProjects/XO_Recognition_HM&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;random.image.background&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "C:/IntellijProjects/XO_Recognition_HM",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\IntellijProjects\XO_Recognition_HM" />
@@ -70,6 +73,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\IntellijProjects\XO_Recognition_HM" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="view" />
     </key>
   </component>
   <component name="RunManager">
@@ -126,7 +132,25 @@
       <workItem from="1667592619679" duration="3652000" />
       <workItem from="1667600635224" duration="38000" />
       <workItem from="1667601955245" duration="5000" />
-      <workItem from="1667677408091" duration="10063000" />
+      <workItem from="1667677408091" duration="10508000" />
+      <workItem from="1667729052345" duration="4968000" />
+      <workItem from="1667737810655" duration="102000" />
+      <workItem from="1668201605797" duration="32000" />
+      <workItem from="1668326194324" duration="604000" />
+      <workItem from="1668428210155" duration="801000" />
+      <workItem from="1668461547419" duration="231000" />
+      <workItem from="1668462402288" duration="1022000" />
+      <workItem from="1668594412240" duration="200000" />
+      <workItem from="1668616288508" duration="4750000" />
+      <workItem from="1668626401649" duration="7892000" />
+      <workItem from="1668634415710" duration="1990000" />
+      <workItem from="1668707784030" duration="11349000" />
+      <workItem from="1668719401176" duration="17000" />
+      <workItem from="1668721502950" duration="38000" />
+      <workItem from="1668721570349" duration="21000" />
+      <workItem from="1668767805280" duration="7664000" />
+      <workItem from="1668805409325" duration="21000" />
+      <workItem from="1668865414778" duration="3511000" />
     </task>
     <task id="LOCAL-00001" summary="v1">
       <created>1666568599249</created>
@@ -156,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667513267404</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v5">
+      <created>1667688012026</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667688012026</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,6 +210,10 @@
     <MESSAGE value="v2" />
     <MESSAGE value="v3 - new" />
     <MESSAGE value="v4" />
-    <option name="LAST_COMMIT_MESSAGE" value="v4" />
+    <MESSAGE value="v5" />
+    <option name="LAST_COMMIT_MESSAGE" value="v5" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/XO_Recognition_HM$main_Main.ic" NAME="main.Main Coverage Results" MODIFIED="1668633345147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -1,6 +1,5 @@
 package algorithm;
 
-import controller.AlgorithmController;
 import model.Data;
 
 import java.util.Arrays;
@@ -31,13 +30,12 @@ public class Adaline {
 
                 double yni = calculateSum(matrix);
                 int prediction = stepFunction(yni);
-                double error = label - yni;
-                if (prediction != label) {
+                double error = label - prediction;
                     for (int j = 0; j < matrix.length; j++) {
                         weights[j] = weights[j] + (matrix[j] * error * learningRate);
                     }
                     bias = bias + error * learningRate;
-                }
+
             }
             x++;
         }
